@@ -35,7 +35,8 @@ def getAccessToken():
                          data={'user_id': zerodha_id, 'request_id': request_id, 'twofa_value': zerodha_pin}, headers=headers)
 
 
-    public_token = data.json()['data']['public_token']
+    #public_token = data.json()['data']['public_token']
+    public_token = data.cookies.get_dict()['public_token']
     user_id='user_id='+zerodha_id
 
     headers.update({'Cookie': cookies+';'+'public_token='+public_token+';'+user_id})
